@@ -11,5 +11,5 @@ CARS=("Thar" "Seltos" "Gimny")  #This is an array
 
 echo "Cars are : ${CARS[@]}"
 echo "First car is : ${CARS[0]}"
-echo "First car is : ${CARS[1]}"
-echo "First car is : ${CARS[2]}"
+echo "Second car is : ${CARS[1]}"
+echo "Third car is : ${CARS[2]}"
