@@ -6,7 +6,7 @@ Start_Time=$(date +%S)
 
 sleep 10
 
-End_Time=$(date +%$)
+End_Time=$(date +%S)
 
 Total_Time=(($End_Time-$Start_Time))
 
