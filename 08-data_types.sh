@@ -9,7 +9,7 @@ echo "SUM is : $SUM"
 
 CARS = ("Thar", "Seltos" , "Gimny")  #This is an array 
 
-echo "Cars are : ${CARS$[@]}
+echo "Cars are : ${CARS$[@]}"
 echo "First car is : ${CARS[0]}"
 echo "First car is : ${CARS[1]}"
 echo "First car is : ${CARS[2]}"
