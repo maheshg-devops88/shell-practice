@@ -10,4 +10,4 @@ End_Time=$(date +%S)
 
 Total_Time=$(($End_Time-$Start_Time))
 
-echo "Total Time taken for script execution::$Total_Time in Seconds"
+echo "Total Time taken for script execution::$Total_Time Seconds"
