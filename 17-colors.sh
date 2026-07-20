@@ -31,7 +31,7 @@ if [ $# -gt 0 ]; then
    for package in $@ ; do
       dnf list installed $package &>> $LOGS_FILE
       if [ $? -eq 0 ]; then
-        echo -e "$B $package is $N aleady installed" | tee -a $LOGS_FILE
+        echo -e "$Y $package is $N aleady installed" | tee -a $LOGS_FILE
      else
         echo -e "Installing.....$Y $package"    
         dnf install $package -y &>> $LOGS_FILE
