@@ -6,4 +6,4 @@ Y="\e[33m"
 B="\e[34m"
 N="\e[31m"
 
-echo "$R This is Mahesh $G This is Keerthi $Y This is Parnika $n This is Jeevika"
+echo -e "$R This is Mahesh $G This is Keerthi $Y This is Parnika $n This is Jeevika"
