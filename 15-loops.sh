@@ -24,7 +24,7 @@ VALIDATE () {
 if [ $# -gt 0 ]; then
    for package in $@ ; do
       dnf installed package &>> $LOGS_FILE
-      if [ $? -eq 0 ]; them 
+      if [ $? -eq 0 ]; then
         echo "$package is aleady installed" | tee -a $LOGS_FILE
      else
         echo "Installing..... $package"    
