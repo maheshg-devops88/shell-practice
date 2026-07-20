@@ -31,3 +31,6 @@ VALIDATE $? "mysql"
 
 dnf install nodejs -y  &>> $LOGS_FILE
 VALIDATE $? "nodejs"
+
+dnf install nettools -y &>> $LOGS_FILE
+VALIDATE $? "net-tools"
