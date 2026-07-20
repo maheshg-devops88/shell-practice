@@ -26,8 +26,8 @@ dnf install nginxx -y
 VALIDATE $? "nginx"
 
 
-dnf install mysql -y  2>&1 | tee -a $LOGS_FILE
+dnf install mysql -y  
 VALIDATE $? "mysql"
 
-dnf install nodejs -y 2>&1 | tee -a $LOGS_FILE
+dnf install nodejs -y 
 VALIDATE $? "nodejs"
