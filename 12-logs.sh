@@ -22,7 +22,7 @@ VALIDATE () {
 }
 
 
-dnf install nginxx -y 
+dnf install nginx -y 
 VALIDATE $? "nginx"
 
 
