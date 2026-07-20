@@ -5,11 +5,10 @@ user_id=$(id -u)
 LOGS_FOLDER=/var/logs/shell-script
 LOGS_FILE=/var/logs/shell-script/$0.logs
 
-if [$user_id -ne 0]; then
-   
+if [ $user_id -ne 0 ]; then
    echo "Please execute the script with sudo or root access"
    exit 1
-   fi
+fi
 
 mkdir -p $LOGS_FOLDER
 
@@ -22,7 +21,7 @@ VALIDATE () {
     fi
 }
 
-if [$@ -gt 0]; then
+if [ $@ -gt 0 ]; then
    for package in $@ ; do
       dnf install $package -y &>> $LOGS_FILE
       VALIDATE $? "$package"
