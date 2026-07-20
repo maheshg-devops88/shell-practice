@@ -22,7 +22,7 @@ VALIDATE () {
 }
 
 
-dnf install nginxx -y 2>&1 | tee -a $LOGS_FILE
+dnf install nginxx -y 
 VALIDATE $? "nginx"
 
 
