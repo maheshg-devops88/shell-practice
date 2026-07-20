@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#set -e
+set -e
 
-trap 'echo "Error in  line $LINENO"' ERR
+trap 'echo "Error in  line $LINENO , command: $BASH_COMMAND"' ERR
 
 echo "This is Mahesh"
 echo "This is Keeru"
