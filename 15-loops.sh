@@ -26,10 +26,11 @@ if [ $# -gt 0 ]; then
       dnf installed package &>> $LOGS_FILE
       if [ $? -eq 0 ]; them 
         echo "$package is aleady installed" | tee -a $LOGS_FILE
-    else
+     else
         echo "Installing..... $package"    
         dnf install $package -y &>> $LOGS_FILE
         VALIDATE $? "$package"
+     fi
       done
 else 
    echo "Please provide the packages to execute the script"
