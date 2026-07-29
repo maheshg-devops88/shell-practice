@@ -3,4 +3,5 @@
 source ./20-script-1.sh
 
 #NAME=ARK
-echo "My Name is $NAME"
+echo "My Name is $N"
+echo "Script Process ID of Script1: $$"
