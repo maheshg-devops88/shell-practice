@@ -24,7 +24,7 @@ else
     while IFS= read -r FILE; do
          echo "OLD_Files: $FILE"
     echo "Deleting Old File: $FILE"
-    rm -r $File
+    rm -rf $File
     echo "Deleted old File: $FILE"
     done <<< "$OLD_FILES_To_DELETE"
 fi
