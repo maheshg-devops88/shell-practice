@@ -25,6 +25,6 @@ else
          echo "OLD_Files: $FILE"
     echo "Deleting Old File: $FILE"
     rm -r $File
-    echo "Deleted old File: $FILE
+    echo "Deleted old File: $FILE"
     done <<< "$OLD_FILES_To_DELETE"
 fi
