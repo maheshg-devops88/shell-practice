@@ -13,6 +13,8 @@ LOGS_FILE=/var/logs/shell-script/$(basename $0).log
 SRC_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14}
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+ARCHIVE_FILE="$DEST_DIR/backup-$TIMESTAMP.tar.gz"
 
 if [ $user_id -ne 0 ]; then
    echo -e "Please execute the script with sudo or root access" 
@@ -48,14 +50,19 @@ fi
 
 FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 
-log "Backup Started"
-log "Source Directory: $SRC_DIR"
-log "Destination Directory: $DEST_DIR"
-log "Files to be archived older than : $DAYS days" 
+# log "Backup Started"
+# log "Source Directory: $SRC_DIR"
+# log "Destination Directory: $DEST_DIR"
+# log "Files to be archived older than : $DAYS days" 
 
 if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
-   else
-   echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
 
+else
+    log "Backup Started"
+    log "Source Directory: $SRC_DIR"
+    log "Destination Directory: $DEST_DIR"
+    log "Files to be archived older than : $DAYS days" 
+    echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILES
+    find $SRC_DIR -type f -name *.log -mtime +$DAYS | tar -czvf "$ARCHIVE_FILE" -T -
 fi 
