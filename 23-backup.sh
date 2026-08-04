@@ -27,7 +27,7 @@ USAGE() {
 }
 
 log() {
-    echo -e $(date "+%Y-%m-%d %H:%M:%S") | $1
+    echo  "$(date "+%Y-%m-%d %H:%M:%S") | $1"
 }
 
 
