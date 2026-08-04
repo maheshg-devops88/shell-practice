@@ -23,6 +23,7 @@ mkdir -p $LOGS_FOLDER
 
 USAGE() {
     echo -e "$Y Please provide ### sh backup.sh SRC_DIR DEST_DIR NO_OF_DAYS ##### $N"  | tee -a $LOGS_FILE
+    exit 1
 }
 
 if [ $# -lt 2 ]; then
@@ -31,4 +32,15 @@ fi
 
 if [ -z $SRC_DIR ]; then
    echo -e "$Y No files to archive in the $SRC_DIR $N" | tee -a $LOGS_FILE
+   exit 1
 fi 
+
+if [ -d $DEST_DIR ]; then 
+   echo -e "$Y No Destination DIR in place $N" | tee -a $LOGS_FILE
+fi
+
+FILES=$(find $SRC_DIR -type f *.log -mtime $DAYS)
+
+if [ -z $FILES ]; then
+   echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
+fi  
