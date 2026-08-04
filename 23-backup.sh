@@ -65,9 +65,9 @@ else
     log "$G Files to be archived older than $N : $DAYS days" | tee -a $LOGS_FILE
 
     echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
-
+    cd "$SOURCE_DIR" || exit 1
     find $SRC_DIR -type f -name *.log -mtime +$DAYS | tar -czvf "$ARCHIVE_FILE" -T -
-   if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ]; then
         echo "Archive completed successfully: $ARCHIVE_FILE"
 
         find $SRC_DIR -type f -name *.log -mtime +$DAYS -delete
