@@ -35,7 +35,7 @@ if [ -z $SRC_DIR ]; then
    exit 1
 fi 
 
-if [ -d $DEST_DIR ]; then 
+if [ -z $DEST_DIR ]; then 
    echo -e "$Y No Destination DIR in place $N" | tee -a $LOGS_FILE
 fi
 
