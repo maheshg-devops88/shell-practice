@@ -59,10 +59,11 @@ if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
 
 else
-    log "Backup Started"
-    log "Source Directory: $SRC_DIR"
-    log "Destination Directory: $DEST_DIR"
-    log "Files to be archived older than : $DAYS days" 
+    log "$G Backup Started $N"
+    log "$G Source Directory $N: $SRC_DIR"
+    log "$G Destination Directory $N: $DEST_DIR"
+    log "$G Files to be archived older than $N : $DAYS days" 
+
     echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
     find $SRC_DIR -type f -name *.log -mtime +$DAYS | tar -czvf "$ARCHIVE_FILE" -T -
     if [ $? -eq 0 ]; then
