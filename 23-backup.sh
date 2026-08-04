@@ -51,7 +51,7 @@ FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 log "Backup Started"
 log "Source Directory: $SRC_DIR"
 log "Destination Directory: $DEST_DIR"
-
+log "Files to be archived: $DAYS" 
 
 if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
