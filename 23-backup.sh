@@ -9,7 +9,7 @@ B="\e[34m"
 N="\e[0m"
 
 LOGS_FOLDER=/var/logs/shell-script
-LOGS_FILE=/var/logs/shell-script/$0.log
+LOGS_FILE=/var/logs/shell-script/$(basename $0).log
 SRC_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14}
@@ -26,6 +26,12 @@ USAGE() {
     exit 1
 }
 
+logs() {
+    echo -e $(date "+%Y-%m-%d %H:%M:%S") | $1
+}
+
+
+
 if [ $# -lt 2 ]; then
    USAGE
 fi
@@ -40,19 +46,13 @@ if [ ! -d $SRC_DIR ]; then
    exit 1
 fi 
 
-
-if [ -z $SRC_DIR ]; then
-   echo -e "$Y No files to archive in the $SRC_DIR $N" | tee -a $LOGS_FILE
-   exit 1
-fi 
-
-
-
 FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 
+echo -e "log Backup Started"
 
 if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
    else
    echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
+
 fi 
