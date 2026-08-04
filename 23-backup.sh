@@ -1,0 +1,30 @@
+#!/bin/bash
+
+user_id=$(id -u)
+
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+B="\e[34m"
+N="\e[0m"
+
+LOGS_FOLDER=/var/logs/shell-script
+LOGS_FILE=/var/logs/shell-script/$0.log
+SRC_DIR=$1
+DEST_DIR=$2
+DAYS=${3:-14}
+
+if [ $user_id -ne 0 ]; then
+   echo -e "Please execute the script with sudo or root access" 
+   exit 1
+fi
+
+mkdir -p $LOGS_FOLDER
+
+USAGE() {
+    echo -e "$Y Please provide ### sh backup.sh SRC_DIR DEST_DIR NO_OF_DAYS ##### $N" 
+}
+
+if [ $# -lt 2 ]; then
+   USAGE
+fi
