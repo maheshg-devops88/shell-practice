@@ -29,7 +29,7 @@ USAGE() {
 }
 
 log() {
-    echo  "$(date "+%Y-%m-%d-%H-%M-%S") | $1"
+    echo -e "$(date "+%Y-%m-%d-%H-%M-%S") | $1"
 }
 
 
@@ -59,20 +59,25 @@ if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
 
 else
-    log "$G Backup Started $N"
-    log "$G Source Directory $N: $SRC_DIR"
-    log "$G Destination Directory $N: $DEST_DIR"
-    log "$G Files to be archived older than $N : $DAYS days" 
+    log "$G Backup Started $N" | tee -a $LOGS_FILE
+    log "$G Source Directory $N: $SRC_DIR" | tee -a $LOGS_FILE
+    log "$G Destination Directory $N: $DEST_DIR" | tee -a $LOGS_FILE
+    log "$G Files to be archived older than $N : $DAYS days" | tee -a $LOGS_FILE
 
     echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
+
     find $SRC_DIR -type f -name *.log -mtime +$DAYS | tar -czvf "$ARCHIVE_FILE" -T -
-    if [ $? -eq 0 ]; then
+   if [ $? -eq 0 ]; then
         echo "Archive completed successfully: $ARCHIVE_FILE"
+
         find $SRC_DIR -type f -name *.log -mtime +$DAYS -delete
         if [ $? -eq 0 ]; then 
-           echo "Deleted Archived Files in SRC_DIR"
+        
+           echo "Deleted Archived Files in SRC_DIR" | tee -a $LOGS_FILE
+        
         fi
       else
-        echo "Archive Failed"
+        
+        echo "Archive Failed" | tee -a $LOGS_FILE
     fi
 fi 
