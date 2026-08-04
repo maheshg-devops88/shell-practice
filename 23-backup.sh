@@ -26,7 +26,7 @@ USAGE() {
     exit 1
 }
 
-logs() {
+log() {
     echo -e $(date "+%Y-%m-%d %H:%M:%S") | $1
 }
 
@@ -48,7 +48,7 @@ fi
 
 FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 
-echo -e "log Backup Started"
+echo -e log "Backup Started"
 
 if [ -z "$FILES" ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
