@@ -13,10 +13,14 @@ LOGS_FILE=/var/logs/shell-script/$0.logs
 
 
 
-FILES=$(find /home/ec2-user/app-logs -type f -mtime +14)
+OLD_FILES_To_DELETE=$(find /home/ec2-user/app-logs -type f -mtime +14)
 
-echo "$FILES"
 
-while IFS= read -r FILE; do
-     echo "OLD_Files: $FILE"
-     done < "$FILES"
+
+if [ -z "$OLD_FILES_To_DELETE" ]; then
+    
+    echo "No files older than 14 days"
+else 
+    while IFS= read -r FILE; do
+         echo "OLD_Files: $FILE"
+    done <<< "$OLD_FILES_To_DELETE"
