@@ -13,7 +13,7 @@ LOGS_FILE=/var/logs/shell-script/$(basename $0).log
 SRC_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14}
-TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(date "+%Y-%m-%d-%H-%M-%S")
 ARCHIVE_FILE="$DEST_DIR/backup-$TIMESTAMP.tar.gz"
 
 if [ $user_id -ne 0 ]; then
@@ -29,7 +29,7 @@ USAGE() {
 }
 
 log() {
-    echo  "$(date "+%Y-%m-%d %H:%M:%S") | $1"
+    echo  "$(date "+%Y-%m-%d-%H-%M-%S") | $1"
 }
 
 
@@ -63,6 +63,15 @@ else
     log "Source Directory: $SRC_DIR"
     log "Destination Directory: $DEST_DIR"
     log "Files to be archived older than : $DAYS days" 
-    echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILES
+    echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
     find $SRC_DIR -type f -name *.log -mtime +$DAYS | tar -czvf "$ARCHIVE_FILE" -T -
+    if [ $? -eq 0 ]; then
+        echo "Archive completed successfully: $ARCHIVE_FILE"
+        find $SRC_DIR -type f -name *.log -mtime +$DAYS -delete
+        if [ $? -eq 0 ]; then 
+           echo "Deleted Archived Files in SRC_DIR"
+        fi
+      else
+        echo "Archive Failed"
+    fi
 fi 
