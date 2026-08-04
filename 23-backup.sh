@@ -45,5 +45,5 @@ FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 if [ -z $FILES ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
    else
-   echo -e "$G Files to be Archived:: $N $FILES \n" | tee -a $LOGS_FILE
+   echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
 fi 
