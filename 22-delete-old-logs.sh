@@ -9,11 +9,16 @@ B="\e[34m"
 N="\e[0m"
 
 LOGS_FOLDER=/var/logs/shell-script
-LOGS_FILE=/var/logs/shell-script/$0.logs
+LOGS_FILE="$LOGS_FOLDER/$0.logs"
 
+if [ $user_id -ne 0 ]; then
+   echo "Please execute the script with sudo or root access"
+   exit 1
+fi
 
+mkdir -p $LOGS_FOLDER
 
-OLD_FILES_To_DELETE=$(find /home/ec2-user/app-logs -type f -mtime +14)
+OLD_FILES_To_DELETE=$(find /home/ec2-user/app-logs -type f -mtime +14)  | tee -a $LOGS_FILE
 
 
 
@@ -24,7 +29,6 @@ else
     while IFS= read -r FILE; do
          echo "OLD_Files: $FILE"
     echo "Deleting Old File: $FILE"
-    rm -rf $File
-    echo "Deleted old File: $FILE"
+    rm -f "$FILE"
     done <<< "$OLD_FILES_To_DELETE"
 fi
