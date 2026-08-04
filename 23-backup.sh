@@ -32,6 +32,7 @@ fi
 
 if [ ! -d $DEST_DIR ]; then 
    echo -e "$Y No Dest_DIR in place $N" | tee -a $LOGS_FILE
+   exit 1
 fi
 
 if [ ! -d $SRC_DIR ]; then
