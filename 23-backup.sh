@@ -30,14 +30,22 @@ if [ $# -lt 2 ]; then
    USAGE
 fi
 
+if [ ! -d $DEST_DIR ]; then 
+   echo -e "$Y No Dest_DIR in place $N" | tee -a $LOGS_FILE
+fi
+
+if [ ! -d $SRC_DIR ]; then
+   echo -e "$Y No SOURCE_DIR in place $N" | tee -a $LOGS_FILE
+   exit 1
+fi 
+
+
 if [ -z $SRC_DIR ]; then
    echo -e "$Y No files to archive in the $SRC_DIR $N" | tee -a $LOGS_FILE
    exit 1
 fi 
 
-if [ -z $DEST_DIR ]; then 
-   echo -e "$Y No Destination DIR in place $N" | tee -a $LOGS_FILE
-fi
+
 
 FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 
