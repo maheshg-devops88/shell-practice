@@ -18,7 +18,7 @@ fi
 
 mkdir -p $LOGS_FOLDER
 
-OLD_FILES_To_DELETE=$(find /home/ec2-user/app-logs -type f -mtime +14)  | tee -a $LOGS_FILE
+OLD_FILES_To_DELETE=$(find /home/ec2-user/app-logs -type f -mtime +14) 
 
 
 
