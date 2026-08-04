@@ -39,10 +39,11 @@ if [ -z $DEST_DIR ]; then
    echo -e "$Y No Destination DIR in place $N" | tee -a $LOGS_FILE
 fi
 
-FILES=$(find $SRC_DIR -type f -name *.log -mtime $DAYS)
+FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
 
 
 if [ -z $FILES ]; then
    echo -e "$Y No files to archive $N " | tee -a $LOGS_FILE
+   else
+   echo -e "$G Files to be Archived $FILES $N" | tee -a $LOGS_FILE
 fi 
-
