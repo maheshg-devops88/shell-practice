@@ -15,7 +15,7 @@ LOGS_FILE=/var/logs/shell-script/$0.logs
 
 FILES=$(find /home/ec2-user/app-logs -type f -mtime +14)
 
-echo $FILES
+echo "$FILES"
 
 while IFS= read -r FILE; do
      echo "OLD_Files: $FILE"
