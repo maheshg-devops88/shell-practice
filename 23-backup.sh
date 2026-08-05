@@ -14,7 +14,7 @@ SRC_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14}
 TIMESTAMP=$(date "+%Y-%m-%d-%H-%M-%S")
-ARCHIVE_FILE="$DEST_DIR/backup-$TIMESTAMP.tar.gz"
+ARCHIVE_FILE="${DEST_DIR%/}/backup-$TIMESTAMP.tar.gz"
 
 if [ $user_id -ne 0 ]; then
    echo -e "Please execute the script with sudo or root access" 
@@ -67,6 +67,11 @@ else
     echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
    #  find "$SRC_DIR" -type f -name *.log -mtime +"$DAYS" | tar -czvf "$ARCHIVE_FILE" -T -
 
+  # %P → path relative to $SRC_DIR (so instead of /home/ec2-user/app-logs/redis.log, you just get redis.log).
+  # \0 → end each filename with a null character, not a newline. This makes the list safe even if filenames 
+  # contain spaces or special characters.
+  # -C "$SRC_DIR" → change into the source directory before adding files. This ensures the archive stores relative paths.
+  # --files-from=- → read the list of files from standard input (the find command’s output).
     find "$SRC_DIR" -type f -name "*.log" -mtime +"$DAYS" -printf "%P\0" | tar --null -czvf "$ARCHIVE_FILE" -C "$SRC_DIR" --files-from=-
 
     if [ $? -eq 0 ]; then
@@ -75,7 +80,7 @@ else
         find "$SRC_DIR" -type f -name *.log -mtime +"$DAYS" -delete
         if [ $? -eq 0 ]; then 
         
-           echo "Deleted Archived Files in SRC_DIR" | tee -a $LOGS_FILE
+           echo "Deleted Archived Files which are older than $DAYS in SRC_DIR" | tee -a $LOGS_FILE
         
         fi
       else
