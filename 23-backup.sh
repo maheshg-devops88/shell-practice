@@ -66,8 +66,9 @@ else
 
     echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
    #  find "$SRC_DIR" -type f -name *.log -mtime +"$DAYS" | tar -czvf "$ARCHIVE_FILE" -T -
-   
-    find "$SRC_DIR" -type f -name "*.log" -mtime +"$DAYS" -print0 | tar --null -czvf "$ARCHIVE_FILE" -C "$SRC_DIR" --files-from=-
+
+    find "$SRC_DIR" -type f -name "*.log" -mtime +"$DAYS" -printf "%P\0" | tar --null -czvf "$ARCHIVE_FILE" -C "$SRC_DIR" --files-from=-
+
     if [ $? -eq 0 ]; then
         echo "Archive completed successfully: $ARCHIVE_FILE"
 
