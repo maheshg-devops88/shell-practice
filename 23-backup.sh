@@ -64,7 +64,7 @@ else
     log "$G Destination Directory $N: $DEST_DIR" | tee -a $LOGS_FILE
     log "$G Files to be archived older than $N : $DAYS days" | tee -a $LOGS_FILE
 
-    echo -e "$G Files to be Archived:: $N $FILES" | tee -a $LOGS_FILE
+    echo -e "$G Files to be Archived:: $N" | tee -a $LOGS_FILE
    #  find "$SRC_DIR" -type f -name *.log -mtime +"$DAYS" | tar -czvf "$ARCHIVE_FILE" -T -
 
   # %P → path relative to $SRC_DIR (so instead of /home/ec2-user/app-logs/redis.log, you just get redis.log).
