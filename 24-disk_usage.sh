@@ -28,7 +28,7 @@ df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % | while read -r 
  
  if [ $use_percentage -gt $Threshold ];  then
          echo "Disk utilization is greater than Threshold $Threshold" : $filesystem $use_percentage
-         exit
+      
      else
          echo "Disk utilization is less than Threshold $Threshold" : $filesystem $use_percentage
         
