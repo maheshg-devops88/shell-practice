@@ -27,7 +27,8 @@ echo $usage
 for fileystem in $usage; do
    if [ $5 -gt $Threshold ]; then
        {
-          echo "Disk Utilization is greater than $Threshold: $1,$5
+          echo "Disk Utilization is greater than $Threshold: $1,$5"
           exit 1
        }
+   fi
 done
