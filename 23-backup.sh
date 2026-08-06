@@ -48,7 +48,7 @@ if [ ! -d $SRC_DIR ]; then
    exit 1
 fi 
 
-FILES=$(find $SRC_DIR -type f -name *.log -mtime +$DAYS)
+FILES=$(find "$SRC_DIR" -type f -name "*.log" -mtime +"$DAYS" -printf "%P\0")
 
 # log "Backup Started"
 # log "Source Directory: $SRC_DIR"
