@@ -18,10 +18,16 @@ fi
 
 mkdir -p $LOGS_FOLDER
 
-usage=$(df -h | grep -v Filesystem | awk -F" " '{print $1,$5}')
+usage=$(df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % )
 
 Threshold=30
 
 echo $usage
 
-
+for fileystem in $usage 
+   
+   if [ $5 -gt $Threshold ];
+       {
+          echo "Disk Utilization is greater than $threshold: $1,$5
+          exit 1
+       }
