@@ -29,10 +29,10 @@ while read -r filesystem use_percentage; do
  if [ $use_percentage -gt $Threshold ];  then
      usage="Disk utilization is greater than Threshold $Threshold : $filesystem $use_percentage%"
      echo "$usage" | tee -a $LOGS_FILE
-     message+="$usage"$'\n'
+     MESSAGE+="$usage"$'\n'
  fi
 done < <(df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d %)
 
 
 
-./mail.sh "mahesh9.storage@gmail.com" "DISK_UTILIZATION_ALERT" "$message"
+./mail.sh "mahesh9.storage@gmail.com" "DISK_UTILIZATION_ALERT" "$MESSAGE"

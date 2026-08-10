@@ -5,7 +5,7 @@ MESSAGE_BODY=$3
 {
 echo "To: $TO_ADDRESS"
 echo "Subject: $SUBJECT"
-echo "Content-Type: text/html"
+echo "Content-Type: text/plain"
 echo ""
 echo "$MESSAGE_BODY"
 } | msmtp "$TO_ADDRESS"
