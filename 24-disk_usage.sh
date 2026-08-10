@@ -33,6 +33,10 @@ df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % | while read -r 
  fi
 done
 
+echo "....MessageStarts...."
+
 echo -e "$message"
+
+echo "....MessageENDS....."
 
 ./mail.sh "mahesh9.storage@gmail.com" "DISK_UTILIZATION_ALERT" "$message"
