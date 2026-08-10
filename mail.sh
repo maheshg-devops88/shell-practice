@@ -1,11 +1,11 @@
-TO_ADDRESS="mahesh9.storage@gmail.com"
-SUBJECT="DISK_UTILIZATION_ALERT"
-
+TO_ADDRESS=$1
+SUBJECT=$2
+MESSAGE_BODY=$3
 
 {
 echo "To: $TO_ADDRESS"
 echo "Subject: $SUBJECT"
 echo "Content-Type: text/html"
 echo ""
-echo "$usage"
+echo "$MESSAGE_BODY"
 } | msmtp "$TO_ADDRESS"
