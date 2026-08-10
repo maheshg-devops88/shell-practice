@@ -31,7 +31,7 @@ while read -r filesystem use_percentage; do
      echo "$usage" | tee -a $LOGS_FILE
      message+="$usage"
  fi
-done << ( df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % )
+done < < (df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d %)
 
 echo "....MessageStarts...."
 
