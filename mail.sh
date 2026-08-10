@@ -3,7 +3,7 @@ SUBJECT=$2
 MESSAGE_BODY=$3
 SERVER_IP=$4
 
-FINAL_MESSAGE=(sed -e "s/SERVER_IP/$SERVER_IP/g" template.html)
+FINAL_MESSAGE=$(sed -e "s/SERVER_IP/$SERVER_IP/g" template.html)
 
 {
 echo "To: $TO_ADDRESS"
