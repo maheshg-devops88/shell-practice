@@ -3,7 +3,9 @@ SUBJECT=$2
 MESSAGE=$3
 SERVER_IP=$4
 
-FINAL_MESSAGE=$(sed -e "s/SERVER_IP/$SERVER_IP/g" -e "s/MESSAGE/$MESSAGE/g" template.html)
+FINAL_MESSAGE_BODY=$(echo $MESSAGE | sed -e 's/[]\/$*.^[]/\\&/g')
+
+FINAL_MESSAGE=$(sed -e "s/SERVER_IP/$SERVER_IP/g" -e "s/MESSAGE/$FINAL_MESSAGE_BODY/g" template.html)
 
 {
 echo "To: $TO_ADDRESS"
