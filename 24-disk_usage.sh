@@ -10,6 +10,7 @@ N="\e[0m"
 
 LOGS_FOLDER=/var/logs/shell-script
 LOGS_FILE=/var/logs/shell-script/$(basename $0).log
+SERVER_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
 
 if [ $user_id -ne 0 ]; then
    echo -e "Please execute the script with sudo or root access" 
@@ -35,4 +36,4 @@ done < <(df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d %)
 
 
 
-./mail.sh "mahesh9.storage@gmail.com" "DISK_UTILIZATION_ALERT" "$MESSAGE"
+./mail.sh "mahesh9.storage@gmail.com" "DISK_UTILIZATION_ALERT" "$MESSAGE" "$SERVER_IP"
