@@ -24,14 +24,14 @@ Threshold=30
 
 echo $usage
 
-df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % | while read -r filesystem use_percentage; do
+while read -r filesystem use_percentage; do
  
  if [ $use_percentage -gt $Threshold ];  then
      usage="Disk utilization is greater than Threshold $Threshold : $filesystem $use_percentage%"
      echo "$usage" | tee -a $LOGS_FILE
      message+="$usage"
  fi
-done
+done << ( df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % )
 
 echo "....MessageStarts...."
 
