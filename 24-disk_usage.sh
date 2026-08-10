@@ -35,7 +35,7 @@ done < <(df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d %)
 
 echo "....MessageStarts...."
 
-echo -e "$message\n"
+echo -e "$message"$\n
 
 echo "....MessageENDS....."
 
