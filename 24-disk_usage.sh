@@ -31,4 +31,4 @@ df -h | grep -v Filesystem | awk -F" " '{print $1,$5}'| tr -d % | while read -r 
  fi
 done
 
-source ./mail.sh 
+./mail.sh 
